@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Especialistas - Constructora</title>
+    <title>Constructora de las Casas - Especialistas</title>
 
-    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
 <body>
@@ -28,15 +32,19 @@
                 <a href="https://x.com/home" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             </div>
+            <div>
+                <button class="btn btn-modal" data-bs-toggle="modal" data-bs-target="#modalCotizacion">¡Cotiza
+                    ahora!</button>
+            </div>
         </div>
     </div>
 
-    <header class="header">
+    <header class="header py-3">
         <div class="container">
             <nav class="nav-bar">
                 <div class="nav-logo">
-                    <a href="../../index.html">
-                        <img class="ajustar-img" src="../img/Logo.png" alt="Logo de la Constructora">
+                    <a href="index.html">
+                        <img class="ajustar-img" th:src="@{/img/Logo.png}" alt="Logo de la Constructora">
                     </a>
                 </div>
 
@@ -46,35 +54,151 @@
 
                 <ul class="nav-menu">
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="../../index.html">Inicio</a>
+                        <a class="nav-menu-link" th:href="@{/}">Inicio</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="nosotros.html">Nosotros</a>
+                        <a class="nav-menu-link" th:href="@{/nosotros}">Nosotros</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="servicios.html">Servicios</a>
+                        <a class="nav-menu-link" th:href="@{/servicios}">Servicios</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link active" href="especialistas.html">Especialistas</a>
+                        <a class="nav-menu-link active" th:href="@{/especialistas}">Especialistas</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="contactanos.html">Contáctanos</a>
+                        <a class="nav-menu-link" th:href="@{/contactanos}">Contáctanos</a>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="banner">
-            <img class="img-fluid" src="../img/Banner.jpg" alt="Equipo de trabajo">
-            <div class="banner-text">
-                <h1>Nuestros Especialistas</h1>
+    <main class="specialists-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="text-danger fw-bold text-uppercase tracking-wider">Profesionales Expertos</span>
+                <h2 class="fw-bold mt-2">Nuestro Equipo Técnico Especializado</h2>
+                <p class="text-muted">Conoce a los especialistas encargados de liderar y garantizar la máxima excelencia
+                    en cada obra.</p>
             </div>
-        </section>
 
+            <div class="row align-items-center mb-4 bg-white rounded shadow-sm border p-4 mx-1">
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div class="overflow-hidden rounded border shadow-sm mx-auto" style="width: 200px; height: 200px;">
+                        <img th:src="@{/img/Trabajador-4.jpg}" alt="Mario Thompson"
+                            class="img-fluid w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+                <div class="col-md-9 ps-md-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <h3 class="h4 fw-bold text-dark mb-1">Mario Thompson</h3>
+                        <span class="badge bg-danger px-3 py-2 fs-6 fw-semibold">Especialista en Estructuras</span>
+                    </div>
+                    <p class="text-secondary fw-semibold mb-2">Experto en <span class="text-danger">Cimentación
+                            Estructural y Suelos</span>.</p>
+                    <p class="text-muted small mb-0">Cuenta con una destacada trayectoria de <span
+                            class="fw-bold text-dark">30 años de experiencia</span> en el sector de la construcción
+                        masiva. Su rol es crítico en el proyecto: se encarga de supervisar la solidez de las bases
+                        estructurales, realizar cálculos de carga física y asegurar que la cimentación de cada obra
+                        cumpla rigurosamente con los estándares de seguridad y resistencia sísmica más exigentes.</p>
+                </div>
+            </div>
 
+            <div class="row align-items-center mb-4 bg-white rounded shadow-sm border p-4 mx-1">
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div class="overflow-hidden rounded border shadow-sm mx-auto" style="width: 200px; height: 200px;">
+                        <img th:src="@{/img/Trabajador-2.jpg}" alt="Jacob Christian"
+                            class="img-fluid w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+                <div class="col-md-9 ps-md-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <h3 class="h4 fw-bold text-dark mb-1">Jacob Christian</h3>
+                        <span class="badge bg-danger px-3 py-2 fs-6 fw-semibold">Arquitecto Senior</span>
+                    </div>
+                    <p class="text-secondary fw-semibold mb-2">Encargado de <span class="text-danger">Diseño
+                            Vanguardista y Planificación Integral</span>.</p>
+                    <p class="text-muted small mb-0">Líder creativo del área de arquitectura. Su labor se centra en la
+                        <span class="fw-bold text-dark">planificación detallada de obras</span> y la proyección de
+                        planos interactivos modernos. Combina a la perfección la optimización de espacios funcionales
+                        con una estética visual premium, logrando transformar las ideas y necesidades de los clientes en
+                        proyectos reales y totalmente viables.</p>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-4 bg-white rounded shadow-sm border p-4 mx-1">
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div class="overflow-hidden rounded border shadow-sm mx-auto" style="width: 200px; height: 200px;">
+                        <img th:src="@{/img/Trabajador-3.jpg}" alt="John Roberson"
+                            class="img-fluid w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+                <div class="col-md-9 ps-md-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <h3 class="h4 fw-bold text-dark mb-1">John Roberson</h3>
+                        <span class="badge bg-danger px-3 py-2 fs-6 fw-semibold">Maestro de Obra</span>
+                    </div>
+                    <p class="text-secondary fw-semibold mb-2">Especialista en <span class="text-danger">Gestión de
+                            Proyectos en Campo</span>.</p>
+                    <p class="text-muted small mb-0">Es el nexo directo entre la planificación técnica y la ejecución
+                        física en terreno. Cuenta con una amplia destreza coordinando cuadrillas operativas, <span
+                            class="fw-bold text-dark">controlando la calidad de los materiales</span> en tiempo real y
+                        garantizando que los cronogramas de construcción se cumplan al pie de la letra, optimizando
+                        recursos sin comprometer el acabado final de la estructura.</p>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-4 bg-white rounded shadow-sm border p-4 mx-1">
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div class="overflow-hidden rounded border shadow-sm mx-auto" style="width: 200px; height: 200px;">
+                        <img th:src="@{/img/Trabajador-1.jpeg}" alt="Mateo Garza"
+                            class="img-fluid w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+                <div class="col-md-9 ps-md-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <h3 class="h4 fw-bold text-dark mb-1">Mateo Garza</h3>
+                        <span class="badge bg-danger px-3 py-2 fs-6 fw-semibold">Ingeniero Eléctrico</span>
+                    </div>
+                    <p class="text-secondary fw-semibold mb-2">Especializado en <span class="text-danger">Sistemas de
+                            Iluminación y Redes de Energía</span>.</p>
+                    <p class="text-muted small mb-0">Responsable directo del diseño e implementación de las
+                        instalaciones eléctricas residenciales y comerciales de alta eficiencia. Se enfoca en
+                        desarrollar <span class="fw-bold text-dark">sistemas energéticos seguros e inteligentes</span>,
+                        asegurando que la distribución interna de cargas y los puntos de iluminación provean el máximo
+                        rendimiento de energía y una total seguridad preventiva contra cortocircuitos.</p>
+                </div>
+            </div>
+
+        </div>
     </main>
+
+    <!-- Modal para mostrar información de contacto y cotización -->
+    <div class="modal fade" id="modalCotizacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white modal-header-custom">
+                    <h5 class="modal-title" id="modalLabel">Solicitar Cotización</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6><strong>Ubícanos en:</strong></h6>
+                    <p>Av. Larco 456, Miraflores, Lima, Perú</p>
+                    <h6><strong>Horarios de Atención:</strong></h6>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 1:00 PM</p>
+                    <p>Domingos: Cerrado</p>
+                    <h6><strong>Contacto:</strong></h6>
+                    <p>Teléfono: +51 987 654 321</p>
+                    <p>Email: info@constructora.com</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer padding-sm">
         <div class="container">
@@ -86,6 +210,7 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <script src="../scripts/main.js"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
+
 </html>

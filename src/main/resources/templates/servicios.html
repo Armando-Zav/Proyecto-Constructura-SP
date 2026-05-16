@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios - Constructora</title>
+    <title>Constructora de las Casas - Servicios</title>
 
-    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
 <body>
@@ -28,15 +32,19 @@
                 <a href="https://x.com/home" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             </div>
+            <div>
+                <button class="btn btn-modal" data-bs-toggle="modal" data-bs-target="#modalCotizacion">¡Cotiza
+                    ahora!</button>
+            </div>
         </div>
     </div>
 
-    <header class="header">
+    <header class="header py-3">
         <div class="container">
             <nav class="nav-bar">
                 <div class="nav-logo">
-                    <a href="../../index.html">
-                        <img class="ajustar-img" src="../img/Logo.png" alt="Logo de la Constructora">
+                    <a href="index.html">
+                        <img class="ajustar-img" th:src="@{/img/Logo.png}" alt="Logo de la Constructora">
                     </a>
                 </div>
 
@@ -46,35 +54,219 @@
 
                 <ul class="nav-menu">
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="../../index.html">Inicio</a>
+                        <a class="nav-menu-link" th:href="@{/}">Inicio</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="nosotros.html">Nosotros</a>
+                        <a class="nav-menu-link" th:href="@{/nosotros}">Nosotros</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link active" href="servicios.html">Servicios</a>
+                        <a class="nav-menu-link active" th:href="@{/servicios}">Servicios</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="especialistas.html">Especialistas</a>
+                        <a class="nav-menu-link" th:href="@{/especialistas}">Especialistas</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="contactanos.html">Contáctanos</a>
+                        <a class="nav-menu-link" th:href="@{/contactanos}">Contáctanos</a>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="banner">
-            <img class="img-fluid" src="../img/Banner.jpg" alt="Planos de servicios de construcción">
-            <div class="banner-text">
-                <h1>Nuestros Servicios</h1>
+    <main class="services-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="text-danger fw-bold text-uppercase tracking-wider">Nuestras Soluciones</span>
+                <h2 class="fw-bold mt-2">Nuestros Servicios de Construcción y Asesoría</h2>
+                <p class="text-muted">Brindamos un acompañamiento integral en cada etapa de tu proyecto inmobiliario.
+                </p>
             </div>
-        </section>
 
+            <div class="row align-items-center mb-5 bg-white rounded shadow-sm border p-4 mx-1">
+                <div class="col-md-6 p-2">
+                    <div class="position-relative overflow-hidden rounded shadow-sm">
+                        <img th:src="@{/img/Servicio-1.png}" alt="Servicios Inmobiliarios"
+                            class="img-fluid w-100 object-fit-cover" style="height: 300px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4"
+                            style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));">
+                            <h3 class="text-white fw-bold h4 mb-3">Servicios Inmobiliarios</h3>
+                            <div>
+                                <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
+                                    data-bs-target="#modalCasaMultisegura">Precios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ps-md-5 py-3">
+                    <p class="p-serv-h1 fw-semibold">Ofrecemos una asesoría integral y personalizada en el
+                        mercado inmobiliario, abarcando de extremo a extremo la compra,
+                            venta y alquiler de propiedades comerciales y residenciales.</p>
+                    <p class="text-muted">Nos encargamos de toda la <span class="fw-bold text-dark">gestión
+                            documentaria</span>, la valorización comercial justa de tu predio y la <span
+                            class="fw-bold text-dark">promoción estratégica</span> en los canales más importantes para
+                        asegurar transacciones rápidas, seguras y completamente transparentes.</p>
+                </div>
+            </div>
 
+            <div
+                class="row align-items-center mb-5 bg-white rounded shadow-sm border p-4 mx-1 flex-column-reverse flex-md-row">
+                <div class="col-md-6 pe-md-5 py-3">
+                    <p class="p-serv-h1 fw-semibold">Brindamos servicios completos de edificación e ingeniería, diseño arquitectónico a medida y
+                        remodelaciones estructurales para transformar cualquier espacio.</p>
+                    <p class="text-muted">Trabajamos con <span class="fw-bold text-dark">planos detallados en 3D</span>,
+                        optimización rigurosa de presupuestos de obra y materiales de primera calidad. Ya sea una
+                        vivienda desde cero o la modernización de tus ambientes, garantizamos <span
+                            class="fw-bold text-dark">acabados impecables</span> y entregas en los plazos pactados.</p>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="position-relative overflow-hidden rounded shadow-sm">
+                        <img th:src="@{/img/Servicio-2.jpg}" alt="Construcción, Diseño y Remodelación"
+                            class="img-fluid w-100 object-fit-cover" style="height: 300px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4"
+                            style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));">
+                            <h3 class="text-white fw-bold h4 mb-3">Construcción, Diseño y Remodelación</h3>
+                            <div>
+                                <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
+                                    data-bs-target="#modalCasaInteligente">Precios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-5 bg-white rounded shadow-sm border p-4 mx-1">
+                <div class="col-md-6 p-2">
+                    <div class="position-relative overflow-hidden rounded shadow-sm">
+                        <img th:src="@{/img/Servicio-3.jpg}" alt="Inspección y Calidad"
+                            class="img-fluid w-100 object-fit-cover" style="height: 300px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4"
+                            style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));">
+                            <h3 class="text-white fw-bold h4 mb-3">Inspección y Calidad de la Vivienda</h3>
+                            <div>
+                                <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
+                                    data-bs-target="#modalPlaneacion">Precios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ps-md-5 py-3">
+                    <p class="p-serv-h1 fw-semibold">Realizamos auditorías
+                            técnicas e inspecciones físicas detalladas en estructuras existentes o en proceso de
+                        entrega para garantizar una compra segura.</p>
+                    <p class="text-muted">Evaluamos minuciosamente las <span class="fw-bold text-dark">instalaciones
+                            eléctricas, sanitarias</span>, el estado estructural y los acabados arquitectónicos bajo
+                        estrictos estándares normativos. Te entregamos un informe técnico detallado que certifica la
+                        <span class="fw-bold text-dark">durabilidad y el valor real</span> del inmueble.
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="row align-items-center mb-5 bg-white rounded shadow-sm border p-4 mx-1 flex-column-reverse flex-md-row">
+                <div class="col-md-6 pe-md-5 py-3">
+                    <p class="p-serv-h1 fw-semibold">Nos hacemos cargo de la gestión operativa, mantenimiento técnico y administración
+                        integral de condominios, edificios residenciales y locales comerciales.</p>
+                    <p class="text-muted">Implementamos planes rigurosos de <span
+                            class="fw-bold text-dark">mantenimiento preventivo y correctivo</span> para sistemas de
+                        bombeo, ascensores, pintura y seguridad. Maximizamos el valor de tu patrimonio, asegurando una
+                        convivencia organizada y la <span class="fw-bold text-dark">continuidad del negocio</span>.</p>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="position-relative overflow-hidden rounded shadow-sm">
+                        <img th:src="@{/img/Servicio-4.jpg}" alt="Administración y Mantenimiento"
+                            class="img-fluid w-100 object-fit-cover" style="height: 300px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4"
+                            style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));">
+                            <h3 class="text-white fw-bold h4 mb-3">Administración y Mantenimiento</h3>
+                            <div>
+                                <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
+                                    data-bs-target="#modalReparacion">Precios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-5 bg-white rounded shadow-sm border p-4 mx-1">
+                <div class="col-md-6 p-2">
+                    <div class="position-relative overflow-hidden rounded shadow-sm">
+                        <img th:src="@{/img/Servicio-5.jpg}" alt="Proyectos Llave en Mano"
+                            class="img-fluid w-100 object-fit-cover" style="height: 300px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4"
+                            style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));">
+                            <h3 class="text-white fw-bold h4 mb-3">Proyectos Llave en Mano</h3>
+                            <div>
+                                <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
+                                    data-bs-target="#modalPlaneacion">Precios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ps-md-5 py-3">
+                    <p class="p-serv-h1 fw-semibold">Asumimos la responsabilidad total del proyecto, desde la concepción del
+                        diseño inicial hasta la entrega final de las llaves de tu propiedad lista para habitar.</p>
+                    <p class="text-muted">Este servicio integral incluye estudios de suelo, <span
+                            class="fw-bold text-dark">trámites de licencias municipales</span>, ejecución de obra y
+                        supervisión de acabados. Olvídate del estrés de coordinar con múltiples proveedores; nosotros
+                        nos encargamos de <span class="fw-bold text-dark">absolutamente todo</span>.</p>
+                </div>
+            </div>
+
+            <div
+                class="row align-items-center mb-5 bg-white rounded shadow-sm border p-4 mx-1 flex-column-reverse flex-md-row">
+                <div class="col-md-6 pe-md-5 py-3">
+                    <p class="p-serv-h1 fw-semibold">Ofrecemos asesoría legal técnica especializada para regularizar la situación documentaria y jurídica de
+                        cualquier tipo de predio o edificación.</p>
+                    <p class="text-muted">Gestionamos procesos complejos de <span class="fw-bold text-dark">declaratoria
+                            de fábrica, independizaciones</span>, rectificación de áreas y linderos, e inscripción
+                        formal en registros públicos (<span class="fw-bold text-dark">SUNARP</span>). Asegura la
+                        plusvalía de tu propiedad y evita problemas futuros.</p>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="position-relative overflow-hidden rounded shadow-sm">
+                        <img th:src="@{/img/Servicio-6.webp}" alt="Saneamiento Legal y Técnico"
+                            class="img-fluid w-100 object-fit-cover" style="height: 300px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4"
+                            style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));">
+                            <h3 class="text-white fw-bold h4 mb-3">Saneamiento Legal y Técnico</h3>
+                            <div>
+                                <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
+                                    data-bs-target="#modalCasaMultisegura">Precios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
+
+    <!-- Modal para mostrar información de contacto y cotización -->
+    <div class="modal fade" id="modalCotizacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white modal-header-custom">
+                    <h5 class="modal-title" id="modalLabel">Solicitar Cotización</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6><strong>Ubícanos en:</strong></h6>
+                    <p>Av. Larco 456, Miraflores, Lima, Perú</p>
+                    <h6><strong>Horarios de Atención:</strong></h6>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 1:00 PM</p>
+                    <p>Domingos: Cerrado</p>
+                    <h6><strong>Contacto:</strong></h6>
+                    <p>Teléfono: +51 987 654 321</p>
+                    <p>Email: info@constructora.com</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer padding-sm">
         <div class="container">
@@ -86,6 +278,7 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <script src="../scripts/main.js"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
+
 </html>

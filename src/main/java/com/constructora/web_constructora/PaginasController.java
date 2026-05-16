@@ -8,7 +8,7 @@ public class PaginasController {
 
     // Llama la pagina index.html
     @GetMapping("/")
-    public String index() {
+    public String inicio() {
         return "index";
     }
     
@@ -24,10 +24,10 @@ public class PaginasController {
         return "contactanos";
     }
 
-    // Llama la pagina especialidades.html
-    @GetMapping("/especialidades")
-    public String especialidades() {
-        return "especialidades";
+    // Llama la pagina especialistas.html
+    @GetMapping("/especialistas")
+    public String especialistas() {
+        return "especialistas";
     }
 
     // Llama la pagina servicios.html

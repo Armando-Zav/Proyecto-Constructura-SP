@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosotros - Constructora</title>
+    <title>Constructora de las Casas - Nosotros</title>
 
-    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
 <body>
@@ -28,15 +32,19 @@
                 <a href="https://x.com/home" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             </div>
+            <div>
+                <button class="btn btn-modal" data-bs-toggle="modal" data-bs-target="#modalCotizacion">¡Cotiza
+                    ahora!</button>
+            </div>
         </div>
     </div>
 
-    <header class="header">
+    <header class="header py-3">
         <div class="container">
             <nav class="nav-bar">
                 <div class="nav-logo">
-                    <a href="../../index.html">
-                        <img class="ajustar-img" src="../img/Logo.png" alt="Logo de la Constructora">
+                    <a href="index.html">
+                        <img class="ajustar-img" th:src="@{/img/Logo.png}" alt="Logo de la Constructora">
                     </a>
                 </div>
 
@@ -46,19 +54,19 @@
 
                 <ul class="nav-menu">
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="../../index.html">Inicio</a>
+                        <a class="nav-menu-link" th:href="@{/}">Inicio</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link active" href="nosotros.html">Nosotros</a>
+                        <a class="nav-menu-link active" th:href="@{/nosotros}">Nosotros</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="servicios.html">Servicios</a>
+                        <a class="nav-menu-link" th:href="@{/servicios}">Servicios</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="especialistas.html">Especialistas</a>
+                        <a class="nav-menu-link" th:href="@{/especialistas}">Especialistas</a>
                     </li>
                     <li class="nav-menu-item">
-                        <a class="nav-menu-link" href="contactanos.html">Contáctanos</a>
+                        <a class="nav-menu-link" th:href="@{/contactanos}">Contáctanos</a>
                     </li>
                 </ul>
             </nav>
@@ -66,14 +74,121 @@
     </header>
 
     <main>
-        <section class="banner">
-            <img class="img-fluid" src="../img/Banner.jpg" alt="Oficina de la constructora">
-            <div class="banner-text">
-                <h1>Nosotros</h1>
+        <section class="about py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <span class="text-danger fw-bold text-uppercase tracking-wider">Nuestra Empresa</span>
+                        <h2 class="cont-h2 mt-2 mb-3 fw-bold">¿Quiénes somos?</h2>
+                        <p class="lead text-muted">Somos una constructora líder con más de 10 años de experiencia,
+                            especializada en viviendas sostenibles y seguras.</p>
+                        <p class="text-secondary">Nuestro equipo de expertos se dedica a transformar tus sueños en
+                            realidad, garantizando los más altos estándares de calidad y compromiso en cada etapa del
+                            proyecto. Nos apasiona construir espacios eficientes, modernos y con diseños arquitectónicos
+                            que se adapten al estilo de vida de cada familia.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img th:src="@{/img/nosotros.jpg}" alt="Equipo de Constructora de las Casas"
+                            class="img-fluid rounded shadow-sm">
+                    </div>
+                </div>
             </div>
         </section>
-    
+
+        <section class="mision-vision py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="p-4 border-start border-danger border-4 bg-white shadow-sm rounded-end">
+                            <h3 class="h4 fw-bold text-dark mb-3">Nuestra Misión</h3>
+                            <p class="text-muted mb-0">Ofrecer soluciones habitacionales y comerciales integrales
+                                mediante procesos de diseño, construcción y remodelación de vanguardia. Nos
+                                comprometemos a entregar espacios sostenibles, seguros y personalizados, superando las
+                                expectativas de calidad de nuestros clientes en cada entrega.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 border-start border-danger border-4 bg-white shadow-sm rounded-end">
+                            <h3 class="h4 fw-bold text-dark mb-3">Nuestra Visión</h3>
+                            <p class="text-muted mb-0">Consolidarnos para los próximos años como la constructora de
+                                referencia en el sector por nuestra innovación, responsabilidad ecológica y excelencia
+                                operativa, construyendo hogares del futuro que impacten positivamente en la comunidad de nuestro pais.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="valores py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Nuestros Valores</h2>
+                    <p class="text-muted">Los pilares fundamentales que guían cada uno de nuestros proyectos
+                        inmobiliarios.</p>
+                </div>
+                <div class="row text-center g-4">
+                    <div class="col-md-4">
+                        <div class="p-3">
+                            <div class="text-danger mb-3">
+                                <i class="fas fa-shield-alt fa-3x"></i>
+                            </div>
+                            <h4 class="fw-bold h5">Seguridad y Calidad</h4>
+                            <p class="text-muted small">Inspeccionamos minuciosamente cada estructura para garantizar
+                                obras duraderas que cumplan estrictamente con las normativas vigentes.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3">
+                            <div class="text-danger mb-3">
+                                <i class="fas fa-leaf fa-3x"></i>
+                            </div>
+                            <h4 class="fw-bold h5">Sostenibilidad</h4>
+                            <p class="text-muted small">Promovemos el desarrollo de viviendas eco-eficientes optimizando
+                                recursos para minimizar el impacto ambiental.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3">
+                            <div class="text-danger mb-3">
+                                <i class="fas fa-handshake fa-3x"></i>
+                            </div>
+                            <h4 class="fw-bold h5">Compromiso Total</h4>
+                            <p class="text-muted small">Acompañamos a nuestros clientes de principio a fin, desde la
+                                primera idea de diseño hasta la entrega final de llaves.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Modal para mostrar información de contacto y cotización -->
+    <div class="modal fade" id="modalCotizacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white modal-header-custom">
+                    <h5 class="modal-title" id="modalLabel">Solicitar Cotización</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6><strong>Ubícanos en:</strong></h6>
+                    <p>Av. Larco 456, Miraflores, Lima, Perú</p>
+                    <h6><strong>Horarios de Atención:</strong></h6>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 1:00 PM</p>
+                    <p>Domingos: Cerrado</p>
+                    <h6><strong>Contacto:</strong></h6>
+                    <p>Teléfono: +51 987 654 321</p>
+                    <p>Email: info@constructora.com</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer padding-sm">
         <div class="container">
@@ -85,6 +200,7 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <script src="../scripts/main.js"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
+
 </html>
