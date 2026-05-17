@@ -75,18 +75,23 @@
 
     <main>
         <!-- Slider principal -->
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+
+            <div class="carousel-inner carrusel-fijo">
                 <div class="carousel-item active">
-                    <img th:src="@{/img/Banner.jpg}" class="d-block w-100" alt="primer banner de la constructora">
+                    <img th:src="@{/img/Banner.jpg}" class="d-block w-100 h-100 object-fit-cover"
+                        alt="primer banner de la constructora">
                 </div>
                 <div class="carousel-item">
-                    <img th:src="@{/img/Banner-2.jpg}" class="d-block w-100" alt="segundo banner de la constructora">
+                    <img th:src="@{/img/Banner-2.jpg}" class="d-block w-100 h-100 object-fit-cover"
+                        alt="segundo banner de la constructora">
                 </div>
                 <div class="carousel-item">
-                    <img th:src="@{/img/Banner-3.jpg}" class="d-block w-100" alt="tercer banner de la constructora">
+                    <img th:src="@{/img/Banner-3.jpg}" class="d-block w-100 h-100 object-fit-cover"
+                        alt="tercer banner de la constructora">
                 </div>
             </div>
+
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

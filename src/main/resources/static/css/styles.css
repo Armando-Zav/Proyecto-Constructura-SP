@@ -270,6 +270,11 @@ p {
 
 /* --- Carousel --- */
 
+.carrusel-fijo {
+    height: 750px; /* Altura fija para pantallas de escritorio */
+    background-color: #000; /* Fondo negro por si una imagen es muy pequeña */
+}
+
 .card-img-top {
     width: 100%;
     height: 500px;
