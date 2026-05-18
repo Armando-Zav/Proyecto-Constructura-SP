@@ -6,7 +6,7 @@ public class SerPrecio3 {
     private int precio_casa;
     private String[] evaluaciones;
 
-    private double adicional;
+    private double adicional = 1.0;
     private int costoBase;
 
     public SerPrecio3() {
@@ -20,8 +20,6 @@ public class SerPrecio3 {
 
     public void calcularPrecio() {
         costoBase = precio_metro_cuadrado * metros_cuadrados;
-
-        adicional = 1.0;
 
         if (evaluaciones != null) {
             for (String ev : evaluaciones) {

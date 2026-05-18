@@ -3,6 +3,7 @@ package com.constructora.web_constructora.controller;
 import com.constructora.web_constructora.model.SerPrecio1;
 import com.constructora.web_constructora.model.SerPrecio2;
 import com.constructora.web_constructora.model.SerPrecio3;
+import com.constructora.web_constructora.model.SerPrecio4;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +54,12 @@ public class ServiciosRestController {
     @PostMapping("/calcular-inspeccion")
     public SerPrecio3 calcularInspeccion(@RequestBody SerPrecio3 solicitud) {
         solicitud.calcularPrecio();
+        return solicitud;
+    }
+
+    @PostMapping("/calcular-mantenimiento")
+    public SerPrecio4 calcularMantenimiento(@RequestBody SerPrecio4 solicitud) {
+        solicitud.calcularMantenimiento();
         return solicitud;
     }
 }

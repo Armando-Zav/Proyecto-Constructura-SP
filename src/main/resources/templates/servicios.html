@@ -184,7 +184,7 @@
                             <h3 class="text-white fw-bold h4 mb-3">Administración y Mantenimiento</h3>
                             <div>
                                 <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
-                                    data-bs-target="#modalReparacion">Precios</button>
+                                    data-bs-target="#modalAdministrativoMantenimiento">Precios</button>
                             </div>
                         </div>
                     </div>
@@ -607,6 +607,120 @@
         </div>
     </div>
 
+    <!-- Modal de Servicio 4  -->
+    <div class="modal fade" id="modalAdministrativoMantenimiento" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold">Gestión Operativa y Mantenimiento Integral</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" style="background-color: #f8f9fa;">
+
+                    <div class="row g-4">
+                        <div class="col-md-7">
+                            <div class="bg-white p-4 rounded shadow-sm border h-100">
+
+                                <div class="mb-3">
+                                    <label for="txtMntPisos" class="form-label fw-bold text-success text-uppercase"
+                                        style="font-size: 0.85rem;">
+                                        <i class="bi bi-building"></i> Cantidad de Pisos / Niveles
+                                    </label>
+                                    <input type="number" id="txtMntPisos" class="form-control border-success"
+                                        placeholder="Ej. 5" min="1">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="txtMntCostoPiso" class="form-label fw-bold text-success text-uppercase"
+                                        style="font-size: 0.85rem;">
+                                        <i class="bi bi-cash-stack"></i> Costo de Gestión Base por Piso (S/)
+                                    </label>
+                                    <input type="number" id="txtMntCostoPiso" class="form-control border-success"
+                                        placeholder="Ej. 200" min="1">
+                                </div>
+
+                                <label class="fw-bold text-primary text-uppercase mb-2" style="font-size: 0.85rem;">
+                                    ¿Qué planes operativos requiere?
+                                </label>
+
+                                <div class="d-flex flex-column gap-2 mb-4">
+                                    <button type="button"
+                                        class="btn btn-outline-primary text-start p-3 btn-mantenimiento-opcion"
+                                        data-mantenimiento="Mantenimiento Preventivo">
+                                        <i class="bi bi-tools me-2"></i> Mantenimiento Preventivo (Bombas, Ascensores)
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-outline-primary text-start p-3 btn-mantenimiento-opcion"
+                                        data-mantenimiento="Mantenimiento Correctivo">
+                                        <i class="bi bi-wrench-adjustable-circle-fill me-2"></i> Mantenimiento
+                                        Correctivo e Incidencias
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-outline-primary text-start p-3 btn-mantenimiento-opcion"
+                                        data-mantenimiento="Sistema de Seguridad">
+                                        <i class="bi bi-shield-lock-fill me-2"></i> Monitoreo y Sistemas de Seguridad
+                                    </button>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="button" id="btnMantenimientoAceptar"
+                                        class="btn btn-warning btn-lg w-100 fw-bold text-uppercase text-white"
+                                        style="background-color: #ff7f27; border-color: #ff7f27;">
+                                        Aceptar
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="card border-warning h-100 shadow-sm" style="border-width: 2px;">
+                                <div class="card-header bg-warning text-dark fw-bold text-uppercase text-center">
+                                    <i class="bi bi-calculator-fill"></i> Presupuesto de Gestión
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-between p-4 bg-white">
+
+                                    <div id="mantenimientoVacio" class="text-center text-muted my-auto">
+                                        <i class="bi bi-building-gear display-4 d-block mb-2 text-muted opacity-50"></i>
+                                        Configure los parámetros del edificio y haga clic en Aceptar.
+                                    </div>
+
+                                    <div id="mantenimientoContenido" class="d-none">
+                                        <h5 class="fw-bold text-dark border-bottom pb-2 mb-3">Resumen de Operaciones
+                                        </h5>
+
+                                        <div class="mb-3">
+                                            <label class="text-muted small d-block">Dimensión del Inmueble:</label>
+                                            <span class="fw-bold text-dark h6" id="lblMntPisosTotales">0 pisos</span>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="text-muted small d-block">Servicios Contratados:</label>
+                                            <span class="badge bg-info text-dark d-block text-start p-2 mt-1 lh-base"
+                                                id="lblMntLista" style="white-space: pre-line;">Ninguno</span>
+                                        </div>
+
+                                        <div class="alert alert-success p-3 mt-4">
+                                            <label class="text-success-dark small fw-bold d-block text-uppercase">Total
+                                                Mensual Administración:</label>
+                                            <span class="h4 fw-bold text-success m-0" id="lblMntTotal">S/ 0.00</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <footer class="footer padding-sm">
         <div class="container">
@@ -625,6 +739,7 @@
     <script th:src="@{/js/servicios1.js}"></script>
     <script th:src="@{/js/servicios2.js}"></script>
     <script th:src="@{/js/servicios3.js}"></script>
+    <script th:src="@{/js/servicios4.js}"></script>
 </body>
 
 </html>
