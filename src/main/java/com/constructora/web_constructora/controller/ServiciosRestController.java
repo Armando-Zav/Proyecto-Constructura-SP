@@ -2,6 +2,7 @@ package com.constructora.web_constructora.controller;
 
 import com.constructora.web_constructora.model.SerPrecio1;
 import com.constructora.web_constructora.model.SerPrecio2;
+import com.constructora.web_constructora.model.SerPrecio3;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,5 +48,11 @@ public class ServiciosRestController {
         resultado.calcularPrecio();
 
         return resultado;
+    }
+
+    @PostMapping("/calcular-inspeccion")
+    public SerPrecio3 calcularInspeccion(@RequestBody SerPrecio3 solicitud) {
+        solicitud.calcularPrecio();
+        return solicitud;
     }
 }

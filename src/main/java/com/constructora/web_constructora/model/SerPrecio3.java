@@ -4,14 +4,31 @@ public class SerPrecio3 {
     private int metros_cuadrados;
     private int precio_metro_cuadrado;
     private int precio_casa;
+    private String[] evaluaciones;
 
-    public SerPrecio3(int metros_cuadrados, int precio_metro_cuadrado) {
+    private double adicional;
+    private int costoBase;
+
+    public SerPrecio3() {
+    }
+
+    public SerPrecio3(int metros_cuadrados, int precio_metro_cuadrado, String[] evaluaciones) {
         this.metros_cuadrados = metros_cuadrados;
         this.precio_metro_cuadrado = precio_metro_cuadrado;
+        this.evaluaciones = evaluaciones;
     }
 
     public void calcularPrecio() {
-        precio_casa = precio_metro_cuadrado * metros_cuadrados; 
+        costoBase = precio_metro_cuadrado * metros_cuadrados;
+
+        adicional = 1.0;
+
+        if (evaluaciones != null) {
+            for (String ev : evaluaciones) {
+                adicional += 0.20;
+            }
+        }
+        precio_casa = (int) (costoBase * adicional);
     }
 
     public int getMetros_cuadrados() {
@@ -36,5 +53,29 @@ public class SerPrecio3 {
 
     public void setPrecio_casa(int precio_casa) {
         this.precio_casa = precio_casa;
+    }
+
+    public String[] getEvaluaciones() {
+        return evaluaciones;
+    }
+
+    public void setEvaluaciones(String[] evaluaciones) {
+        this.evaluaciones = evaluaciones;
+    }
+
+    public double getAdicional() {
+        return adicional;
+    }
+
+    public void setAdicional(double adicional) {
+        this.adicional = adicional;
+    }
+
+    public int getCostoBase() {
+        return costoBase;
+    }
+
+    public void setCostoBase(int costoBase) {
+        this.costoBase = costoBase;
     }
 }

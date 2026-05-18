@@ -147,7 +147,7 @@
                             <h3 class="text-white fw-bold h4 mb-3">Inspección y Calidad de la Vivienda</h3>
                             <div>
                                 <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
-                                    data-bs-target="#modalPlaneacion">Precios</button>
+                                    data-bs-target="#modalInspeccionCalidad">Precios</button>
                             </div>
                         </div>
                     </div>
@@ -486,6 +486,118 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Servicio 3 -->
+    <div class="modal fade" id="modalInspeccionCalidad" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold">Auditoría Técnica e Inspección de Vivienda</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" style="background-color: #f8f9fa;">
+
+                    <div class="row g-4">
+                        <div class="col-md-7">
+                            <div class="bg-white p-4 rounded shadow-sm border h-100">
+
+                                <div class="mb-3">
+                                    <label for="txtInspeccionMetros"
+                                        class="form-label fw-bold text-success text-uppercase"
+                                        style="font-size: 0.85rem;">
+                                        <i class="bi bi-ruler-2"></i> Ingrese Metros Cuadrados ($m^2$)
+                                    </label>
+                                    <input type="number" id="txtInspeccionMetros" class="form-control border-success"
+                                        placeholder="Ej. 90" min="1">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="txtInspeccionPrecioM2"
+                                        class="form-label fw-bold text-success text-uppercase"
+                                        style="font-size: 0.85rem;">
+                                        <i class="bi bi-cash-stack"></i> Ingrese Precio Base por $m^2$ (S/)
+                                    </label>
+                                    <input type="number" id="txtInspeccionPrecioM2" class="form-control border-success"
+                                        placeholder="Ej. 15" min="1">
+                                </div>
+
+                                <label class="fw-bold text-primary text-uppercase mb-2" style="font-size: 0.85rem;">
+                                    ¿Qué evaluaciones deseas?
+                                </label>
+
+                                <div class="d-flex flex-column gap-2 mb-4">
+                                    <button type="button"
+                                        class="btn btn-outline-primary text-start p-3 btn-inspeccion-opcion"
+                                        data-evaluacion="Instalación Eléctrica">
+                                        <i class="bi bi-lightning-charge-fill me-2"></i> Instalación Eléctrica
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-outline-primary text-start p-3 btn-inspeccion-opcion"
+                                        data-evaluacion="Instalación Sanitaria">
+                                        <i class="bi bi-droplet-fill me-2"></i> Instalación Sanitaria
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-outline-primary text-start p-3 btn-inspeccion-opcion"
+                                        data-evaluacion="Estudio Estructural">
+                                        <i class="bi bi-building-fill me-2"></i> Estudio Estructural
+                                    </button>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="button" id="btnInspeccionAceptar"
+                                        class="btn btn-warning btn-lg w-100 fw-bold text-uppercase text-white style-aceptar"
+                                        style="background-color: #ff7f27; border-color: #ff7f27;">
+                                        Aceptar
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="card border-warning h-100 shadow-sm" style="border-width: 2px;">
+                                <div class="card-header bg-warning text-dark fw-bold text-uppercase text-center">
+                                    <i class="bi bi-calculator-fill"></i> Cálculos Analíticos de Inspección
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-between p-4 bg-white">
+
+                                    <div id="inspeccionVacio" class="text-center text-muted my-auto">
+                                        <i
+                                            class="bi bi-clipboard-check display-4 d-block mb-2 text-muted opacity-50"></i>
+                                        Configure las opciones y haga clic en Aceptar para procesar la auditoría
+                                        técnica.
+                                    </div>
+
+                                    <div id="inspeccionContenido" class="d-none">
+                                        <h5 class="fw-bold text-dark border-bottom pb-2 mb-3">Resumen de Auditoría</h5>
+
+                                        <div class="mb-3">
+                                            <label class="text-muted small d-block">Área a Inspeccionar:</label>
+                                            <span class="fw-bold text-dark h6" id="lblInspMetros">0 m²</span>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="text-muted small d-block">Evaluaciones Incluidas:</label>
+                                            <span class="badge bg-info text-dark d-block text-start p-2 mt-1 lh-base"
+                                                id="lblInspServicios" style="white-space: pre-line;">Ninguna</span>
+                                        </div>
+
+                                        <div class="alert alert-success p-3 mt-4">
+                                            <label class="text-success-dark small fw-bold d-block text-uppercase">Costo
+                                                Total Inspección:</label>
+                                            <span class="h4 fw-bold text-success m-0" id="lblInspTotal">S/ 0.00</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -512,6 +624,7 @@
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{/js/servicios1.js}"></script>
     <script th:src="@{/js/servicios2.js}"></script>
+    <script th:src="@{/js/servicios3.js}"></script>
 </body>
 
 </html>
