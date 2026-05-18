@@ -1,9 +1,9 @@
 package com.constructora.web_constructora.model;
 
-public class SecPrecios {
+public class SerPrecio1 {
     // Clases
     private String nombre;
-    private int precio;
+    private int precio_metro_cuadrado;
     private String tipo;
     private String ubicacion;
     private int metros_cuadrados;
@@ -11,9 +11,9 @@ public class SecPrecios {
     private int precio_casa;
 
     // Constructor
-    public SecPrecios(String nombre, int precio, String tipo, String ubicacion, int metros_cuadrados) {
+    public SerPrecio1(String nombre, int precio_metro_cuadrado, String tipo, String ubicacion, int metros_cuadrados) {
         this.nombre = nombre;
-        this.precio = precio;
+        this.precio_metro_cuadrado = precio_metro_cuadrado;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
         this.metros_cuadrados = metros_cuadrados;
@@ -21,7 +21,7 @@ public class SecPrecios {
 
     // Metodo para calcular el precio final
     public void calcularPrecio() {
-        precio_casa = precio * metros_cuadrados; 
+        precio_casa = precio_metro_cuadrado * metros_cuadrados; 
     }
 
     // Getters y Setters
@@ -33,12 +33,12 @@ public class SecPrecios {
         this.nombre = nombre;
     }
 
-    public int getPrecio() {
-        return precio;
+    public int getPrecio_metro_cuadrado() {
+        return precio_metro_cuadrado;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public void setPrecio_metro_cuadrado(int precio_metro_cuadrado) {
+        this.precio_metro_cuadrado = precio_metro_cuadrado;
     }
 
     public String getTipo() {
