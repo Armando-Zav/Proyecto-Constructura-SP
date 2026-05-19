@@ -300,6 +300,47 @@ p {
     transition: transform 0.4s ease, filter 0.4s ease;
 }
 
+/* Obligamos a la primera diapositiva a heredar el tamaño correcto del carrusel fijo */
+.banner-ingenieros {
+    width: 100%;
+    height: 100%; /* Si usas una altura fija en .carrusel-fijo, esto la heredará impecable */
+    min-height: 550px; /* Altura mínima de seguridad para que luzca imponente */
+}
+
+/* Contenedor translúcido principal (MÁS GRANDE Y SIEMPRE CENTRADO) */
+.contenedor-servicios-flotante {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    
+    /* NUEVO TAMAÑO MAXIMIZADO */
+    width: 95%;              /* Ocupa casi todo el ancho disponible en pantallas medianas */
+    max-width: 1200px;       /* Ancho máximo bien estirado para monitores grandes */
+    height: 540px;           /* Mayor altura para que las fotos de los servicios luzcan espectaculares */
+    
+    /* ESTÉTICA TRANSLÚCIDA frosted glass */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 25px;           
+    border-radius: 16px;
+    z-index: 10;
+}
+
+.boton-cotizar-naranja {
+    background-color: #ff7f27 !important;
+    border-color: #ff7f27 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    font-size: 0.85rem !important;
+    padding: 6px 16px !important;
+    border-radius: 6px !important;
+}
+
+.boton-cotizar-naranja:hover {
+    background-color: #e0681b !important;
+    border-color: #e0681b !important;
+}
+
 
 /* --- Footer --- */
 .footer {
