@@ -190,60 +190,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row align-items-center mb-5 bg-white rounded shadow-sm border p-4 mx-1">
-                <div class="col-md-6 p-2">
-                    <div class="position-relative overflow-hidden rounded shadow-sm">
-                        <img th:src="@{/img/Servicio-5.jpg}" alt="Proyectos Llave en Mano"
-                            class="img-fluid w-100 object-fit-cover" style="height: 300px;">
-                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4"
-                            style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));">
-                            <h3 class="text-white fw-bold h4 mb-3">Proyectos Llave en Mano</h3>
-                            <div>
-                                <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
-                                    data-bs-target="#modalPlaneacion">Precios</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 ps-md-5 py-3">
-                    <p class="p-serv-h1 fw-semibold">Asumimos la responsabilidad total del proyecto, desde la concepción
-                        del
-                        diseño inicial hasta la entrega final de las llaves de tu propiedad lista para habitar.</p>
-                    <p class="text-muted">Este servicio integral incluye estudios de suelo, <span
-                            class="fw-bold text-dark">trámites de licencias municipales</span>, ejecución de obra y
-                        supervisión de acabados. Olvídate del estrés de coordinar con múltiples proveedores; nosotros
-                        nos encargamos de <span class="fw-bold text-dark">absolutamente todo</span>.</p>
-                </div>
-            </div>
-
-            <div
-                class="row align-items-center mb-5 bg-white rounded shadow-sm border p-4 mx-1 flex-column-reverse flex-md-row">
-                <div class="col-md-6 pe-md-5 py-3">
-                    <p class="p-serv-h1 fw-semibold">Ofrecemos asesoría legal técnica especializada para regularizar la
-                        situación documentaria y jurídica de
-                        cualquier tipo de predio o edificación.</p>
-                    <p class="text-muted">Gestionamos procesos complejos de <span class="fw-bold text-dark">declaratoria
-                            de fábrica, independizaciones</span>, rectificación de áreas y linderos, e inscripción
-                        formal en registros públicos (<span class="fw-bold text-dark">SUNARP</span>). Asegura la
-                        plusvalía de tu propiedad y evita problemas futuros.</p>
-                </div>
-                <div class="col-md-6 p-2">
-                    <div class="position-relative overflow-hidden rounded shadow-sm">
-                        <img th:src="@{/img/Servicio-6.webp}" alt="Saneamiento Legal y Técnico"
-                            class="img-fluid w-100 object-fit-cover" style="height: 300px;">
-                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4"
-                            style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));">
-                            <h3 class="text-white fw-bold h4 mb-3">Saneamiento Legal y Técnico</h3>
-                            <div>
-                                <button type="button" class="btn btn-danger fw-bold px-4" data-bs-toggle="modal"
-                                    data-bs-target="#modalCasaMultisegura">Precios</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </main>
 
@@ -268,6 +214,8 @@
                     <p>Email: info@constructora.com</p>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-success fw-bold"
+                        onclick="redirigirAContacto('Inspección')">Solicitar Servicio</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -378,6 +326,8 @@
 
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-success fw-bold"
+                            onclick="redirigirAContactoDptos()">Solicitar Servicio</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -486,6 +436,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success fw-bold" onclick="redirigirAContactoObras()">Solicitar
+                        Servicio</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -601,6 +556,8 @@
 
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-success fw-bold"
+                        onclick="redirigirAContactoServicio3()">Solicitar Servicio</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -715,12 +672,13 @@
 
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-success fw-bold"
+                        onclick="redirigirAContactoServicio4()">Solicitar Servicio</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
-
 
     <footer class="footer padding-sm">
         <div class="container">

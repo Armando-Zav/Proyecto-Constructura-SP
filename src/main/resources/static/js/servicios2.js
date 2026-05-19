@@ -86,3 +86,16 @@ function actualizarPanelResultados(datos) {
     document.getElementById("lblResumenCostoM2").innerText = "S/ " + datos.precio_metro_cuadrado.toLocaleString('es-PE') + " por m²";
     document.getElementById("lblResumenTotal").innerText = "S/ " + datos.precio_casa.toLocaleString('es-PE');
 }
+
+function redirigirAContactoObras() {
+    // Capturamos las etiquetas que pintamos en el segundo cotizador
+    const proyecto = document.getElementById("lblResumenServicio").innerText; // Ej: "Proyecto: Plano 3D"
+    const metros = document.getElementById("lblResumenMetros").innerText; // Ej: "90 m²"
+    const costoM2 = document.getElementById("lblResumenCostoM2").innerText; // Ej: "S/ 15 por m²"
+    const total = document.getElementById("lblResumenTotal").innerText; // Ej: "S/ 1,350"
+
+    const mensajeFormateado = `Hola, deseo solicitar un presupuesto formal para el proyecto de Obras. \n- ${proyecto} \n- Área: ${metros} \n- Costo Base: ${costoM2} \n- Presupuesto estimado: ${total}`;
+
+    localStorage.setItem("servicio_pendiente", mensajeFormateado);
+    window.location.href = "/contactanos";
+}

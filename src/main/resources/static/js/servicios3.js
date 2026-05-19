@@ -85,3 +85,26 @@ function mostrarResultadosInspeccion(datos) {
     // Pintamos el precio final de la auditoría técnica calculada
     document.getElementById("lblInspTotal").innerText = "S/ " + datos.precio_casa.toLocaleString('es-PE');
 }
+
+function redirigirAContactoServicio3() {
+    // 1. Capturamos los elementos de la interfaz
+    const txtMetros = document.getElementById("lblInspMetros").innerText;
+    const txtServicios = document.getElementById("lblInspServicios").innerText.split('\n').join(', ');
+    const txtTotal = document.getElementById("lblInspTotal").innerText;
+
+    // 2. Extraemos los números ignorando letras y símbolos (S/, m², comas)
+    const numeroMetros = parseFloat(txtMetros.replace(/[^0-9.]/g, '')) || 0;
+    const numeroTotal = parseFloat(txtTotal.replace(/[^0-9.]/g, '')) || 0;
+
+    // 3. Validación matemática real e infalible
+    if (numeroTotal === 0 || numeroMetros === 0) {
+        alert("Por favor, configure las opciones y haga clic en 'Aceptar' antes de solicitar el servicio.");
+        return;
+    }
+
+    // Armamos la cadena con palabras clave exactas para tu nuevo formulario
+    const mensajeFormateado = `Hola, deseo contratar el servicio de Auditoría e Inspección Técnica. \n- Área: ${txtMetros} \n- Evaluaciones selectas: ${txtServicios} \n- Presupuesto estimado: ${txtTotal}`;
+
+    localStorage.setItem("servicio_pendiente", mensajeFormateado);
+    window.location.href = "/contactanos"; 
+}

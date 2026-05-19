@@ -88,54 +88,49 @@
                     <div class="col-md-7 p-4 p-lg-5">
                         <h3 class="h4 fw-bold text-dark mb-4">Escríbenos</h3>
 
-                        <form action="" method="post">
+                        <form id="formContacto" action="" method="post">
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
                                     <label class="form-label small fw-bold text-secondary">Nombre</label>
-                                    <input class="form-control" type="text" placeholder="Ej. Juan" required />
+                                    <input class="form-control" id="txtContactoNombre" type="text"
+                                        placeholder="Ej. Juan" required />
                                 </div>
                                 <div class="col-sm-6 mb-3">
                                     <label class="form-label small fw-bold text-secondary">Apellido</label>
-                                    <input class="form-control" type="text" placeholder="Ej. Pérez" required />
+                                    <input class="form-control" id="txtContactoApellido" type="text"
+                                        placeholder="Ej. Pérez" required />
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
                                     <label class="form-label small fw-bold text-secondary">Correo Electrónico</label>
-                                    <input class="form-control" type="email" placeholder="juan.perez@email.com"
-                                        required />
+                                    <input class="form-control" id="txtContactoCorreo" type="email"
+                                        placeholder="juan.perez@email.com" required />
                                 </div>
                                 <div class="col-sm-6 mb-3">
-                                    <label class="form-label small fw-bold text-secondary">Teléfono / WhatsApp</label>
-                                    <input class="form-control" type="tel" placeholder="Ej. 987654321" required />
+                                    <label class="form-label small fw-bold text-secondary">Teléfono</label>
+                                    <input class="form-control" id="txtContactoTelefono" type="tel"
+                                        placeholder="Ej. 987654321" required />
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label small fw-bold text-secondary">Tipo de Proyecto / Servicio
-                                    requerido</label>
-                                <select class="form-select" required>
+                                <label class="form-label small fw-bold text-secondary">Tipo Servicio                                    requerido</label>
+                                <select class="form-select" id="selectContactoServicio" required>
                                     <option value="" selected hidden>-- Selecciona una opción --</option>
-                                    <option value="construccion">Construcción y Edificación Completa</option>
-                                    <option value="diseno">Diseño Arquitectónico y Planos 3D</option>
-                                    <option value="remodelacion">Remodelación y Ampliación de Espacios</option>
-                                    <option value="inmobiliario">Asesoría Inmobiliaria (Compra/Venta/Alquiler)</option>
-                                    <option value="saneamiento">Saneamiento Legal y Técnico de Predios</option>
+                                    <option value="servicio1">Servicio Inmobiliarios</option>
+                                    <option value="servicio2">Construccion, Diseño y Remodelacion</option>
+                                    <option value="servicio3">Inspeccion y calidad de la Vivienda</option>
+                                    <option value="servicio4">Administracion y Mantenimiento</option>
                                 </select>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label small fw-bold text-secondary">Detalles de tu mensaje</label>
-                                <textarea class="form-control" rows="4"
+                                <textarea class="form-control" id="txtContactoMensaje" rows="4"
                                     placeholder="Cuéntanos más sobre los metros cuadrados, ubicación o detalles de la obra que deseas realizar..."
                                     required></textarea>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label small fw-bold text-secondary">Verificación de Seguridad</label>
-                                <input class="form-control" type="text" placeholder="Introduce el código Captcha"
-                                    required />
                             </div>
 
                             <div class="form-check mb-4">
@@ -149,7 +144,7 @@
 
                             <div class="d-grid">
                                 <button class="btn btn-danger btn-lg fw-bold py-2 shadow-sm text-uppercase"
-                                    type="submit">Enviar Mensaje</button>
+                                    type="button" onclick="enviarFormularioAJava()">Enviar Mensaje</button>
                             </div>
                         </form>
                     </div>
@@ -201,7 +196,8 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <script src="../scripts/main.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/contactanos.js}"></script>
 </body>
 
 </html>

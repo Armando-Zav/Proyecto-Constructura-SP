@@ -10,6 +10,9 @@ public class SerPrecio1 {
     // Metodos
     private int precio_casa;
 
+    public SerPrecio1() {
+    }
+
     // Constructor
     public SerPrecio1(String nombre, int precio_metro_cuadrado, String tipo, String ubicacion, int metros_cuadrados) {
         this.nombre = nombre;
@@ -66,11 +69,11 @@ public class SerPrecio1 {
     }
 
     // Getter y Setter para el precio final
-    public int getPrecioCasa() {
+    public int getPrecio_casa() {
         return precio_casa;
     }
 
-    public void setPrecioCasa(int precio_casa) {
+    public void setPrecio_casa(int precio_casa) {
         this.precio_casa = precio_casa;
     }
 }

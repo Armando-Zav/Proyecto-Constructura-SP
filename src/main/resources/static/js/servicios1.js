@@ -1,152 +1,140 @@
-// 1. VARIABLE GLOBAL (Aquí se guardarán las casas que vengan de Spring Boot)
-let listaPropiedades = [];
+// Memoria local del navegador para guardar la lista completa que viene de Java
+let todasLasPropiedades = [];
 
-// 2. INCIO: Lo primero que hacemos al cargar la página es pedir los datos
 document.addEventListener("DOMContentLoaded", function() {
-    pedirPropiedadesAlServidor();
+    cargarPropiedadesDesdeJava();
 });
 
-// 3. CONEXIÓN CON JAVA RESTCONTROLLER
-function pedirPropiedadesAlServidor() {
-    fetch('/api/propiedades')
+// 1. LLAMADA AL RESTCONTROLLER (Se ejecuta una sola vez al abrir la página)
+function cargarPropiedadesDesdeJava() {
+    fetch('/api/propiedades') // Tu endpoint exacto del @GetMapping
         .then(function(respuesta) {
             return respuesta.json();
         })
-        .then(function(datosRecibidos) {
-            // Mapeamos asegurando que coincida con las variables exactas de tu clase SecPrecios
-            listaPropiedades = datosRecibidos.map(function(item) {
-                return {
-                    nombre: item.nombre,
-                    precio: parseInt(item.precio),
-                    tipo: item.tipo,
-                    ubicacion: item.ubicacion,
-                    metrosCuadrados: parseInt(item.metros_cuadrados), // Con guion bajo como en Java
-                    precioCasa: parseInt(item.precio_casa)           // Con guion bajo como en Java
-                };
-            });
-            console.log("Casas cargadas con éxito desde la API:", listaPropiedades);
+        .then(function(datos) {
+            todasLasPropiedades = datos;
+            console.log("Propiedades cargadas con éxito desde Java:", todasLasPropiedades);
             
-            // ¡REGLA DE ORO! Recién cuando los datos están en el navegador, activamos los filtros
-            activarEscuchadoresDeFiltros();
-            
-            // Ejecutamos una primera búsqueda automática por si ya hay datos seleccionados
-            filtrarOpciones();
+            // Inicializamos los eventos de escucha una vez que tenemos la data
+            configurarFiltros();
         })
         .catch(function(error) {
-            console.error("Hubo un problema al conectar con ServiciosRestController:", error);
+            console.error("Error al traer las propiedades del RestController:", error);
         });
 }
 
-// 4. ESCUCHADORES DE EVENTOS
-function activarEscuchadoresDeFiltros() {
+// 2. CONFIGURAR LOS FILTROS DE LA UI
+function configurarFiltros() {
     const selectUbicacion = document.getElementById("selectUbicacion");
     const inputMetros = document.getElementById("inputMetros");
 
-    // Detectar cuando el usuario cambia de distrito (San Borja / SJL)
-    selectUbicacion.addEventListener("change", function() {
-        filtrarOpciones();
-    });
+    // Cada vez que cambie el distrito o escriban m², filtramos y redibujamos la lista izquierda
+    if (selectUbicacion) selectUbicacion.addEventListener("change", filtrarYMostrarPropiedades);
+    if (inputMetros) inputMetros.addEventListener("input", filtrarYMostrarPropiedades);
 
-    // Detectar cuando el usuario escribe o borra en los metros cuadrados
-    inputMetros.addEventListener("input", function() {
-        filtrarOpciones();
+    // Escuchador global de clics para atrapar el botón amarillo "Seleccionar"
+    document.addEventListener("click", function(evento) {
+        const botonSeleccionar = evento.target.closest(".btn-seleccionar-propiedad");
+        if (!botonSeleccionar) return;
+
+        // Recuperamos el índice del elemento guardado en el atributo data-index
+        const indice = parseInt(botonSeleccionar.getAttribute("data-index"));
+        const propiedadElegida = todasLasPropiedades[indice];
+
+        if (propiedadElegida) {
+            renderizarPanelDerecho(propiedadElegida);
+        }
     });
 }
 
-// 5. FUNCIÓN DE FILTRADO (Tu regla de negocio: m² menores o iguales)
-function filtrarOpciones() {
+// 3. FILTRAR EN VIVO LAS OPCIONES DE LA IZQUIERDA
+function filtrarYMostrarPropiedades() {
     const ubicacionSeleccionada = document.getElementById("selectUbicacion").value;
     const metrosMaximos = parseInt(document.getElementById("inputMetros").value) || 0;
     const contenedorLista = document.getElementById("listaOpcionesContenedor");
 
-    // Si el usuario todavía no elige una ubicación, dejamos el mensaje de espera de tu diseño
-    if (!ubicacionSeleccionada || ubicacionSeleccionada === "") {
+    // Si aún no se selecciona ubicación, mantenemos el mensaje base
+    if (!ubicacionSeleccionada) {
         contenedorLista.innerHTML = `<p class="text-center text-muted py-4 m-0">Elija la ubicación y m² para listar las opciones.</p>`;
         return;
     }
 
-    // Filtramos el array basándonos en lo que ingresó el usuario
-    let filtrados = listaPropiedades.filter(function(casa) {
-        // Comparamos ignorando mayúsculas/minúsculas para evitar errores de escritura
-        const coincideUbicacion = casa.ubicacion.toLowerCase() === ubicacionSeleccionada.toLowerCase();
-        
-        // Aplicamos tu regla estricta: metros reales de la casa <= metros indicados por el usuario
+    // Filtramos el array local comparando con los campos de tu objeto Java
+    // ubicacion -> getUbicacion(), metros_cuadrados -> getMetros_cuadrados()
+    const propiedadesFiltradas = todasLasPropiedades.filter(function(propiedad) {
+        const cumpleUbicacion = propiedad.ubicacion === ubicacionSeleccionada;
+        let cumpleMetros = true;
         if (metrosMaximos > 0) {
-            return coincideUbicacion && (casa.metrosCuadrados <= metrosMaximos);
+            cumpleMetros = propiedad.metros_cuadrados <= metrosMaximos;
         }
-        
-        return coincideUbicacion; // Si dejó el cuadro de m² vacío, muestra todas las de esa zona
+        return cumpleUbicacion && cumpleMetros;
     });
 
-    // Pasamos el resultado al dibujador visual
-    renderizarListaIzquierda(filtrados);
-}
-
-// 6. DIBUJAR LA LISTA EN EL PANEL IZQUIERDO
-function renderizarListaIzquierda(lista) {
-    const contenedorLista = document.getElementById("listaOpcionesContenedor");
-    contenedorLista.innerHTML = ""; // Limpiamos los mensajes anteriores
-
-    // Si los filtros descartaron todas las casas de prueba
-    if (lista.length === 0) {
-        const m2Ingresados = document.getElementById("inputMetros").value || 0;
-        contenedorLista.innerHTML = `<p class="text-center text-muted py-3 m-0">No hay opciones de ${m2Ingresados}m² o menos en esta zona.</p>`;
+    // Si no hay propiedades que coincidan con el filtro
+    if (propiedadesFiltradas.length === 0) {
+        contenedorLista.innerHTML = `<p class="text-center text-danger py-4 m-0">No se encontraron propiedades disponibles con esos criterios.</p>`;
         return;
     }
 
-    // Si encontramos coincidencias, creamos las cajitas interactivas de Bootstrap
-    lista.forEach(function(casa) {
-        const item = document.createElement("div");
-        item.className = "p-3 mb-2 border rounded d-flex justify-content-between align-items-center opcion-predio";
-        item.style.cursor = "pointer";
-        item.style.transition = "background-color 0.2s";
-        item.innerHTML = `
-            <div>
-                <h6 class="mb-0 fw-bold text-dark">${casa.nombre}</h6>
-                <small class="text-muted">Área: ${casa.metrosCuadrados} m² | Tipo: ${casa.tipo}</small>
+    // Dibujamos las tarjetas en el HTML usando los nombres de tus variables Java en minúsculas
+    let htmlContenido = "";
+    propiedadesFiltradas.forEach(function(propiedad) {
+        // Buscamos el índice real en el array original para poder seleccionarlo luego
+        const indiceOriginal = todasLasPropiedades.indexOf(propiedad);
+
+        htmlContenido += `
+            <div class="border rounded p-3 mb-2 bg-white shadow-sm d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="fw-bold text-dark mb-1">${propiedad.nombre}</h6>
+                    <small class="text-muted">Área: ${propiedad.metros_cuadrados} m² | Tipo: ${propiedad.tipo}</small>
+                </div>
+                <button type="button" class="btn btn-warning btn-sm fw-bold btn-seleccionar-propiedad" data-index="${indiceOriginal}">
+                    Seleccionar
+                </button>
             </div>
-            <span class="badge bg-warning text-dark fw-bold">Seleccionar</span>
         `;
-
-        // Efecto visual hover manual
-        item.addEventListener("mouseenter", function() { item.classList.add("bg-light"); });
-        item.addEventListener("mouseleave", function() { if(!item.classList.contains("border-warning")) item.classList.remove("bg-light"); });
-
-        // Evento clic: Muestra el detalle completo a la derecha al presionarlo
-        item.addEventListener("click", function() {
-            document.querySelectorAll('.opcion-predio').forEach(function(el) {
-                el.classList.remove('bg-light', 'border-warning');
-            });
-            item.classList.add('bg-light', 'border-warning');
-            
-            mostrarDatosDerecha(casa);
-        });
-
-        contenedorLista.appendChild(item);
     });
+
+    contenedorLista.innerHTML = htmlContenido;
 }
 
-// 7. MOSTRAR DATOS EN EL PANEL DERECHO
-function mostrarDatosDerecha(casa) {
+// 4. PINTAR LOS DATOS EN EL PANEL DERECHO AMARILLO
+function renderizarPanelDerecho(propiedad) {
+    // Intercambiamos estados de los contenedores invisibles/visibles
     document.getElementById("panelDerechoVacio").classList.add("d-none");
     document.getElementById("panelDerechoContenido").classList.remove("d-none");
 
-    // 1. Aseguramos que el precio de la casa sea un número válido
-    // Intentamos leer 'precioCasa' o 'precio_casa' por si viene con guion bajo desde la API
-    let precioFinalCalculado = casa.precioCasa || casa.precio_casa;
+    // Inyectamos las respuestas usando tus IDs exactos del HTML
+    document.getElementById("txtNombre").innerText = propiedad.nombre;
+    document.getElementById("txtUbicacion").innerText = propiedad.ubicacion;
+    document.getElementById("txtTipo").innerText = propiedad.tipo;
+    
+    // getPrecio_metro_cuadrado() y getPrecio_casa() calculados por Java
+    const precioM2 = propiedad.precio_metro_cuadrado || 0;
+    const precioTotal = propiedad.precio_casa || 0;
 
-    // Si por alguna razón da undefined o no existe, lo calculamos manualmente al instante como respaldo
-    if (!precioFinalCalculado) {
-        precioFinalCalculado = parseInt(casa.precio) * parseInt(casa.metrosCuadrados);
+    document.getElementById("txtPrecioBase").innerText = "S/ " + precioM2.toLocaleString('es-PE') + ".00";
+    document.getElementById("txtMetros").innerText = propiedad.metros_cuadrados + " m²";
+    
+    // El total final de la alerta verde
+    document.getElementById("txtPrecioCasa").innerText = "S/ " + precioTotal.toLocaleString('es-PE') + ".00";
+}
+
+// 5. FUNCIÓN DEL BOTÓN VERDE "SOLICITAR SERVICIO"
+function redirigirAContactoDptos() {
+    const panelContenido = document.getElementById("panelDerechoContenido");
+    if (panelContenido.classList.contains("d-none")) {
+        alert("Por favor, seleccione primero una propiedad de la lista izquierda.");
+        return;
     }
 
-    // 2. Inyectamos los textos en las etiquetas correspondientes
-    document.getElementById("txtNombre").innerText = casa.nombre;
-    document.getElementById("txtUbicacion").innerText = casa.ubicacion;
-    document.getElementById("txtTipo").innerText = casa.tipo;
-    document.getElementById("txtPrecioBase").innerText = "S/ " + parseInt(casa.precio).toLocaleString('es-PE');
-    document.getElementById("txtMetros").innerText = casa.metrosCuadrados + " m²";
-    
-    // 3. Pintamos el Precio Final formateado correctamente sin errores de NaN
-    document.getElementById("txtPrecioCasa").innerText = "S/ " + precioFinalCalculado.toLocaleString('es-PE');
+    const titulo = document.getElementById("txtNombre").innerText;
+    const zona = document.getElementById("txtUbicacion").innerText;
+    const dpto = document.getElementById("txtTipo").innerText;
+    const total = document.getElementById("txtPrecioCasa").innerText;
+
+    const mensajeFormateado = `Hola, deseo solicitar informes sobre el inmueble cotizado en la web. \n- Proyecto: ${titulo} \n- Ubicación: ${zona} \n- Tipo de propiedad: ${dpto} \n- Precio Estimado: ${total}`;
+
+    localStorage.setItem("servicio_pendiente", mensajeFormateado);
+    window.location.href = "/contactanos"; // Salta a tu página de contacto
 }

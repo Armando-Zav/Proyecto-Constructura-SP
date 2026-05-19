@@ -1,10 +1,12 @@
 package com.constructora.web_constructora.controller;
 
+import com.constructora.web_constructora.model.Contacto;
 import com.constructora.web_constructora.model.SerPrecio1;
 import com.constructora.web_constructora.model.SerPrecio2;
 import com.constructora.web_constructora.model.SerPrecio3;
 import com.constructora.web_constructora.model.SerPrecio4;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,5 +63,21 @@ public class ServiciosRestController {
     public SerPrecio4 calcularMantenimiento(@RequestBody SerPrecio4 solicitud) {
         solicitud.calcularMantenimiento();
         return solicitud;
+    }
+
+    @PostMapping("/enviar-contacto")
+    public ResponseEntity<String> procesarContacto(@RequestBody Contacto contacto) {
+        // Aquí recibes la data limpia desde el formulario
+        System.out.println("¡Nueva solicitud de contacto recibida!");
+        System.out.println("Cliente: " + contacto.getNombre());
+        System.out.println("Correo: " + contacto.getCorreo());
+        System.out.println("Teléfono: " + contacto.getTelefono());
+        System.out.println("Detalles del Servicio: \n" + contacto.getMensaje());
+
+        // NOTA: Aquí a futuro puedes meter tu lógica para guardar en MySQL/MariaDB
+
+        // Respondemos un mensaje de éxito plano o un JSON de confirmación
+        return ResponseEntity.ok(
+                "{\"status\": \"OK\", \"mensaje\": \"Su solicitud ha sido registrada correctamente. Pronto nos comunicaremos con usted.\"}");
     }
 }
