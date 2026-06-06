@@ -1,19 +1,34 @@
 package com.constructora.web_constructora.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "propiedades") // Así se llamará la tabla en MySQL Workbench
 public class SerPrecio1 {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Primary Key
+
     // Clases
     private String nombre;
     private int precio_metro_cuadrado;
     private String tipo;
     private String ubicacion;
     private int metros_cuadrados;
-    // Metodos
+    
+    // Atributo calculado
     private int precio_casa;
 
+    // Constructor vacío (Obligatorio para JPA)
     public SerPrecio1() {
     }
 
-    // Constructor
+    // Constructor con metodos
     public SerPrecio1(String nombre, int precio_metro_cuadrado, String tipo, String ubicacion, int metros_cuadrados) {
         this.nombre = nombre;
         this.precio_metro_cuadrado = precio_metro_cuadrado;
@@ -22,12 +37,18 @@ public class SerPrecio1 {
         this.metros_cuadrados = metros_cuadrados;
     }
 
-    // Metodo para calcular el precio final
     public void calcularPrecio() {
         precio_casa = precio_metro_cuadrado * metros_cuadrados; 
     }
 
-    // Getters y Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -68,7 +89,6 @@ public class SerPrecio1 {
         this.metros_cuadrados = metros_cuadrados;
     }
 
-    // Getter y Setter para el precio final
     public int getPrecio_casa() {
         return precio_casa;
     }
