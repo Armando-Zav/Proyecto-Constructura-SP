@@ -7,7 +7,6 @@ import com.constructora.web_constructora.model.SerPrecio2;
 import com.constructora.web_constructora.model.SerPrecio3;
 import com.constructora.web_constructora.model.SerPrecio4;
 import com.constructora.web_constructora.repository.SerPrecio1Repository; 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +19,15 @@ import java.util.List;
 @RequestMapping("/api") 
 public class ServiciosRestController {
 
-    @Autowired
-    private SerPrecio1Repository serPrecio1Repository; // Puente para propiedades
+    private final SerPrecio1Repository serPrecio1Repository; // Puente para propiedades
 
     // 1. ¡AQUÍ ESTABA EL DETALLE! Agregamos la inyección para los contactos:
-    @Autowired
-    private ContactoRepository contactoRepository; 
+    private final ContactoRepository contactoRepository;
+
+    ServiciosRestController(SerPrecio1Repository serPrecio1Repository, ContactoRepository contactoRepository) {
+        this.serPrecio1Repository = serPrecio1Repository;
+        this.contactoRepository = contactoRepository;
+    } 
 
     @GetMapping("/propiedades")
     public List<SerPrecio1> obtenerPropiedades() {
