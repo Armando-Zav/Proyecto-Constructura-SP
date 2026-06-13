@@ -1,14 +1,26 @@
 package com.constructora.web_constructora.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "ser_precio2") // Nombre que tendrá la tabla en MySQL
 public class SerPrecio2 {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Llave primaria autoincremental requerida por JPA
+
     private String servicio;
     private int metros_cuadrados;
     private int precio_metro_cuadrado;
-
     private int precio_casa;
 
+    // Constructor vacío obligatorio para JPA
     public SerPrecio2() {
-
     }
 
     public SerPrecio2(String servicio, int metros_cuadrados, int precio_metro_cuadrado) {
@@ -18,9 +30,19 @@ public class SerPrecio2 {
     }
     
     public void calcularPrecio() {
-        precio_casa = precio_metro_cuadrado * metros_cuadrados; 
+        this.precio_casa = this.precio_metro_cuadrado * this.metros_cuadrados; 
     }
 
+    // --- NUEVOS GETTER Y SETTER PARA EL ID ---
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    // --- GETTERS Y SETTERS EXISTENTES ---
     public int getMetros_cuadrados() {
         return metros_cuadrados;
     }
