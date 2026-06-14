@@ -20,6 +20,7 @@ public class SerPrecio1 {
     private String tipo;
     private String ubicacion;
     private int metros_cuadrados;
+    private String imagen;
     
     // Atributo calculado
     private int precio_casa;
@@ -95,5 +96,13 @@ public class SerPrecio1 {
 
     public void setPrecio_casa(int precio_casa) {
         this.precio_casa = precio_casa;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

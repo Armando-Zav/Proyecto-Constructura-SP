@@ -98,6 +98,42 @@ function filtrarYMostrarPropiedades() {
     contenedorLista.innerHTML = htmlContenido;
 }
 
+// 🌟 DELEGACIÓN DE EVENTOS (Escucha clics en elementos creados dinámicamente)
+document.addEventListener('click', function (e) {
+    // Verificamos si el elemento clickeado tiene la clase de tu botón
+    if (e.target && e.target.classList.contains('btn-seleccionar-propiedad')) {
+        
+        // 1. Capturamos el índice que guardaste en data-index="${indiceOriginal}"
+        const index = e.target.getAttribute('data-index');
+        const propiedad = todasLasPropiedades[index]; // Tu array global de propiedades
+
+        if (propiedad) {
+            // 2. Intercambiamos la visibilidad de los paneles del modal
+            document.getElementById("panelDerechoVacio").classList.add("d-none");
+            document.getElementById("panelDerechoContenido").classList.remove("d-none");
+
+            // 3. Rellenamos los datos usando exactamente los IDs de tu HTML
+            document.getElementById("txtNombre").innerText = propiedad.nombre;
+            document.getElementById("txtUbicacion").innerText = propiedad.ubicacion;
+            
+            // Convertimos a mayúsculas el tipo para que resalte con el badge de Bootstrap
+            document.getElementById("txtTipo").innerText = propiedad.tipo.toUpperCase();
+            
+            // Mostramos los precios y áreas (usando los mismos nombres exactos de tu .java)
+            document.getElementById("txtPrecioBase").innerText = "S/ " + propiedad.precio_metro_cuadrado + ".00";
+            document.getElementById("txtMetros").innerText = propiedad.metros_cuadrados + " m²";
+            document.getElementById("txtPrecioCasa").innerText = "S/ " + propiedad.precio_casa + ".00";
+
+            // 4. Si añadiste la etiqueta <img> que armamos antes, la actualizamos aquí:
+            const imgElement = document.getElementById("imgPropiedad");
+            if (imgElement) {
+                imgElement.src = "/img/" + (propiedad.imagen ? propiedad.imagen : "default.jpg");
+                imgElement.alt = propiedad.nombre;
+            }
+        }
+    }
+});
+
 // 4. PINTAR LOS DATOS EN EL PANEL DERECHO AMARILLO
 function renderizarPanelDerecho(propiedad) {
     // Intercambiamos estados de los contenedores invisibles/visibles

@@ -18,17 +18,19 @@ public class Contacto {
     private String correo;
     private String telefono;
     private String mensaje;
+    private String intencion;
 
     // Constructor vacío
     public Contacto() {
     }
 
     // Constructor con metodos 
-    public Contacto(String nombre, String correo, String telefono, String mensaje) {
+    public Contacto(String nombre, String correo, String telefono, String mensaje, String intencion) {
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
         this.mensaje = mensaje;
+        this.intencion = intencion;
     }
 
     public Long getId() {
@@ -69,5 +71,13 @@ public class Contacto {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public String getIntencion() {
+        return intencion;
+    }
+
+    public void setIntencion(String intencion) {
+        this.intencion = intencion;
     }
 }

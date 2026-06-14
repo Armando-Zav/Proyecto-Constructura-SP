@@ -116,7 +116,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label small fw-bold text-secondary">Tipo Servicio                                    requerido</label>
+                                <label class="form-label small fw-bold text-secondary">Tipo Servicio requerido</label>
                                 <select class="form-select" id="selectContactoServicio" required>
                                     <option value="" selected hidden>-- Selecciona una opción --</option>
                                     <option value="servicio1">Servicio Inmobiliarios</option>
@@ -186,6 +186,102 @@
         </div>
     </div>
 
+    <!-- Modal para tomar la decisión del usuario después de procesar la cotización y mostrar el precio estimado -->
+    <div class="modal fade" id="modalDecision" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modalDecisionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="modalDecisionLabel">Confirmación de Solicitud</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <h4 class="fw-bold mb-3">¿Qué acción deseas realizar?</h4>
+                    <p class="text-muted">Hemos procesado tu cotización. Selecciona si deseas proceder al pago directo o
+                        si solo requieres que un asesor te brinde más información.</p>
+                </div>
+                <div class="modal-footer justify-content-center gap-3">
+                    <button type="button" id="btnSoloInformacion" class="btn btn-outline-secondary px-4">Solo
+                        Información</button>
+                    <button type="button" id="btnPagarServicio" class="btn btn-danger px-4 fw-bold">Pasar a
+                        Pagar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar los métodos de pago disponibles y el código QR para realizar el pago de la cotización -->
+    <div class="modal fade" id="modalPagoQR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modalPagoQRLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="modalPagoQRLabel">Métodos de Pago Dispobibles</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+
+                    <h5 class="fw-bold text-dark mb-3">Escanea el código QR para pagar cómodamente</h5>
+
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <img src="/img/qr-yape.png" alt="Código QR Yape/Plin"
+                            class="img-fluid rounded shadow-sm d-block mx-auto"
+                            style="max-width: 220px; border: 2px solid #ffc107;">
+                    </div>
+
+                    <p class="text-muted small">Aceptamos Yape, Plin y transferencias interbancarias.</p>
+
+                    <div class="d-flex align-items-center my-4">
+                        <hr class="flex-grow-1 text-muted">
+                        <span class="mx-2 text-muted fw-bold small">O TRANSFIERE AQUÍ</span>
+                        <hr class="flex-grow-1 text-muted">
+                    </div>
+
+                    <div class="text-start">
+
+                        <div class="p-3 mb-3 border rounded bg-light shadow-xs">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <strong class="text-primary" style="color: #1d2b59 !important;">BANCO DE CRÉDITO
+                                    (BCP)</strong>
+                                <span class="badge bg-primary text-white">Soles</span>
+                            </div>
+                            <div class="small text-secondary">
+                                <p class="mb-0"><strong>Titular:</strong> Constructora De Las Casas S.A.C.</p>
+                                <p class="mb-0"><strong>N° Cuenta:</strong> 193-98765432-0-12</p>
+                                <p class="mb-1"><strong>CCI:</strong> 002-193-0098765432012-14</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 border rounded bg-light shadow-xs">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <strong class="text-info" style="color: #00853b !important;">INTERBANK</strong>
+                                <span class="badge bg-success text-white">Soles</span>
+                            </div>
+                            <div class="small text-secondary">
+                                <p class="mb-0"><strong>Titular:</strong> Constructora De Las Casas S.A.C.</p>
+                                <p class="mb-0"><strong>N° Cuenta:</strong> 200-3001234567</p>
+                                <p class="mb-0"><strong>CCI:</strong> 003-200-003001234567-25</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <p class="text-muted mt-4 mb-0 style-quote text-center px-2" style="font-size: 0.85rem;">
+                        ⚠️ <em>Una vez realizado el depósito o la transferencia, nuestro equipo administrativo validará
+                            la operación de inmediato para procesar tu solicitud.</em>
+                    </p>
+
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" id="btnFinalizarPago" class="btn btn-dark px-5"
+                        data-bs-dismiss="modal">Entendido / Finalizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer padding-sm">
         <div class="container">
             <span>&copy; 2025 Constructora de las Casas - Todos los derechos reservados</span>
@@ -196,6 +292,9 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{/js/contactanos.js}"></script>
 </body>
