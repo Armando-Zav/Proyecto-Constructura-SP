@@ -1,0 +1,107 @@
+/* Variables - Paleta de colores principal */
+:root {
+    /* Colores personalizados principales */
+    --color-principal: #012443; /* Azul oscuro */
+    --color-secundario: #F3F3F3; /* Gris muy claro / humo */
+    --colorboton: #B61919; /* Rojo construcción */
+    --color-texto-claro: #FFFFFF;
+    --color-texto-oscuro: #333333;
+    --color-gris-fondo: #6E6E6E;
+
+    /* Tipografías importadas de Google Fonts */
+    --fuente-titulos: 'Teko', sans-serif;
+    --fuente-cuerpo: 'Roboto', sans-serif;
+}
+
+/* Fondo oscuro adaptado con tu azul principal */
+.login-bg {
+    /* Un degradado elegante usando tu color principal y un tono un poco más oscuro */
+    background: linear-gradient(135deg, #011222 0%, var(--color-principal) 100%);
+    font-family: var(--fuente-cuerpo);
+}
+
+/* Contenedor principal máximo del Login */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* Estilos para la imagen del logo en el Login */
+.login-brand-img {
+    max-width: 180px; 
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 5px; 
+}
+
+/* Título dentro de la tarjeta (Iniciar sesión) */
+.login-card h3 {
+    font-family: var(--fuente-titulos);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Tarjeta con efecto Esmerilado / Glassmorphism */
+.login-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    /* Borde sutil basado en tu color secundario */
+    border: 1px solid color-mix(in srgb, var(--color-secundario) 20%, transparent);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos de los Inputs oscuros */
+.login-input {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid color-mix(in srgb, var(--color-secundario) 20%, transparent);
+    color: var(--color-texto-claro) !important;
+    border-radius: 8px;
+    font-family: var(--fuente-cuerpo);
+}
+
+/* Ahora el focus responde a tu color rojo principal */
+.login-input:focus {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    border-color: var(--colorboton);
+    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--colorboton) 25%, transparent);
+}
+
+.login-input::placeholder {
+    color: color-mix(in srgb, var(--color-secundario) 50%, transparent);
+}
+
+/* Botón Rojo (Llamado a la acción) */
+.btn-submit {
+    background-color: var(--colorboton);
+    color: var(--color-texto-claro); 
+    font-family: var(--fuente-titulos);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    /* Oscurece el rojo un 15% al pasar el mouse */
+    background-color: color-mix(in srgb, var(--colorboton) 85%, black);
+    color: var(--color-texto-claro);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--colorboton) 40%, transparent);
+}
+
+/* Alerta de error al iniciar sesión */
+.login-error-alert {
+    background-color: rgba(182, 25, 25, 0.15) !important; /* Basado en tu rojo */
+    border: 1px solid rgba(182, 25, 25, 0.4) !important;
+    color: #ffcccc !important;
+    border-radius: 8px;
+    font-family: var(--fuente-cuerpo);
+}
+
+/* Texto extra chico para las credenciales de guía */
+.extra-small {
+    font-size: 0.75rem;
+    color: var(--color-secundario);
+}

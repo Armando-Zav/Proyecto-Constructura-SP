@@ -111,8 +111,9 @@ function ejecutarEnvioBackend(intencionUsuario) {
         nombre: `${nombre} ${apellido}`,
         correo: correo,
         telefono: telefono,
-        mensaje: `[ID SERVICIO: ${servicio}] ${mensaje}`, // Mantenemos el ID del servicio aquí
-        intencion: intencionUsuario // 🔥 Enviamos "SOLO INFORMACION" o "CLIENTE DESEA PAGAR" de forma independiente
+        servicio: servicio, // <--- ¡Añade esta línea! (Debe llamarse igual que en tu clase Contacto.java)
+        mensaje: mensaje,   // <--- Puedes quitar el [ID SERVICIO...] de aquí si quieres que el mensaje quede limpio
+        intencion: intencionUsuario
     };
 
     console.log("Despachando JSON estructurado a Java:", objetoContacto);

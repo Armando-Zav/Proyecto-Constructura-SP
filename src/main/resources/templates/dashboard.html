@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructora - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body class="bg-light-gray min-vh-100 d-flex">
+
+    <nav class="sidebar d-flex flex-column p-3 text-white">
+
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item mb-2">
+                <a href="#" class="nav-link active d-flex align-items-center gap-2">
+                    <i class="bi bi-card-checklist"></i> <!-- Cambié el ícono a uno más de lista/solicitud -->
+                    Solicitudes
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <hr class="border-secondary opacity-25">
+            <!-- CORRECCIÓN: Apuntar a /logout para Spring Security -->
+            <a href="/logout" class="nav-link d-flex align-items-center gap-2 small text-muted">
+                <i class="bi bi-box-arrow-left"></i>
+                Cerrar sesión
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-grow-1 p-4 main-content">
+        <header class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+            <div>
+                <h2 class="h3 mb-1 fw-semibold text-dark">Solicitudes y cotizaciones</h2>
+                <p class="text-muted small mb-0">Vista operativa de contactos y presupuestos</p>
+            </div>
+            <div class="user-dropdown dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle btn-sm d-flex align-items-center gap-2"
+                    type="button" data-bs-toggle="dropdown">
+                    <div class="avatar-circle">A</div>
+                    <span class="small fw-medium">Administrador</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-menu-item small" href="#">Mi Perfil</a></li>
+                    <!-- CORRECCIÓN: Apuntar a /logout -->
+                    <li><a class="dropdown-menu-item small" href="/logout">Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section class="row g-3 mb-4 kpi-container">
+            <div class="row g-3 mb-4">
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="kpi-card p-3 d-flex align-items-center">
+                        <div class="kpi-icon icon-blue me-3">
+                            <i class="bi bi-inbox-fill"></i>
+                        </div>
+                        <div>
+                            <!-- CORRECCIÓN: ID actualizado -->
+                            <h3 class="fw-bold mb-0 text-dark" id="txtTotalSolicitudes">0</h3>
+                            <span class="text-muted extra-small fw-semibold text-uppercase">Solicitudes Totales</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="kpi-card p-3 d-flex align-items-center">
+                        <div class="kpi-icon icon-orange me-3">
+                            <i class="bi bi-house-door-fill"></i>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold mb-0 text-dark" id="txtPendientes">0</h3>
+                            <span class="text-muted extra-small fw-semibold text-uppercase">Inmobiliarios</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="kpi-card p-3 d-flex align-items-center">
+                        <div class="kpi-icon icon-green me-3">
+                            <i class="bi bi-buildings-fill"></i>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold mb-0 text-dark" id="txtConfirmadas">0</h3>
+                            <span class="text-muted extra-small fw-semibold text-uppercase">Construcción y Otros</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="kpi-card p-3 d-flex align-items-center">
+                        <div class="kpi-icon icon-light-blue me-3">
+                            <i class="bi bi-cash-coin"></i>
+                        </div>
+                        <div>
+                            <!-- CORRECCIÓN: Adiós txtComensales -->
+                            <h3 class="fw-bold mb-0 text-dark" id="txtValorEstimado">0</h3>
+                            <span class="text-muted extra-small fw-semibold text-uppercase">Valor estimado (S/)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="control-bar p-3 mb-4 d-flex justify-content-between align-items-center gap-3">
+            <div class="input-group search-group">
+                <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control border-start-0" id="inputBuscar"
+                    placeholder="Buscar por nombre, teléfono o ID...">
+            </div>
+            <div class="d-flex align-items-center gap-2 filter-group">
+                <select class="form-select form-select-sm text-dark bg-white" id="selectEstado"
+                    onchange="renderTable()">
+                    <option value="Todos">Todos los estados</option>
+                    <option value="Confirmada">Confirmada</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Cancelada">Cancelada</option>
+                </select>
+                <input type="date" id="inputFecha" class="form-control form-control-sm text-muted bg-white date-input">
+                <span class="text-muted small result-count ms-1">0 resultados</span>
+            </div>
+        </section>
+
+        <section class="mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-semibold mb-0">Resumen Financiero por Área</h5>
+                        <span class="small text-muted">Actualizados desde la base de datos</span>
+                    </div>
+                    <div id="preciosResumen" class="row g-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="table-section p-3">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle table-sm" id="reservationsTable">
+                    <thead>
+                        <tr class="text-muted small">
+                            <th scope="col" class="ps-3">ID</th>
+                            <th scope="col">CLIENTE</th>
+                            <th scope="col">FECHA</th>
+                            <th scope="col">SERVICIO</th> <!-- Reemplazamos MENSAJE por SERVICIO -->
+                            <th scope="col">TELÉFONO</th>
+                            <th scope="col">INTENCIÓN</th>
+                            <th scope="col" class="text-end pe-3">ACCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Resumen de Solicitud -->
+    <div class="modal fade" id="modalResumen" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow border-0">
+                <div class="modal-header bg-white">
+                    <h5 class="modal-title fw-bold text-dark fs-6"><i
+                            class="bi bi-eye-fill me-2 text-primary"></i>Resumen de Solicitud</h5>
+                    <!-- CORRECCIÓN: Se eliminó el onclick mal formado aquí -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3" id="modalResumenBody">
+                    <div class="text-center text-muted">Cargando...</div>
+                </div>
+                <div class="modal-footer bg-light border-0 py-2">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Detalles del Proyecto (Fantasmas de cevichería eliminados) -->
+    <div class="modal fade" id="modalDetalleReserva" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow border-0">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title fw-bold text-dark fs-6"><i
+                            class="bi bi-info-circle-fill me-2 text-primary"></i>Expediente de Obra / Proyecto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="table-responsive">
+                        <table class="table table-borderless align-middle mb-0">
+                            <tbody>
+                                <tr class="border-bottom border-light">
+                                    <td class="text-muted small py-2" style="width: 35%;">ID Interno:</td>
+                                    <td class="fw-monospace small py-2 text-secondary" id="modalDetalleId">-</td>
+                                </tr>
+                                <tr class="border-bottom border-light">
+                                    <td class="text-muted small py-2">Nombre Cliente:</td>
+                                    <td class="fw-semibold text-dark py-2" id="modalDetalleCliente">-</td>
+                                </tr>
+                                <tr class="border-bottom border-light">
+                                    <td class="text-muted small py-2">Teléfono de Contacto:</td>
+                                    <td class="py-2 text-secondary" id="modalDetalleTelefono">-</td>
+                                </tr>
+                                <tr class="border-bottom border-light">
+                                    <td class="text-muted small py-2">Ubicación / Terreno:</td>
+                                    <td class="py-2 text-dark" id="modalDetalleUbicacion">-</td>
+                                </tr>
+                                <tr class="border-bottom border-light">
+                                    <td class="text-muted small py-2">Tipo de Servicio:</td>
+                                    <td class="fw-bold text-dark py-2" id="modalDetalleTipoServicio">-</td>
+                                </tr>
+                                <tr class="border-bottom border-light">
+                                    <td class="text-muted small py-2">Presupuesto Estimado:</td>
+                                    <td class="fw-semibold text-dark py-2" id="modalDetallePresupuesto">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted small py-2">Estado Actual:</td>
+                                    <td class="py-2" id="modalDetalleEstado">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light border-0 py-2">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-2"
+                        data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
